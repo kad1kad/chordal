@@ -1,0 +1,24 @@
+@import "../styles/global-variables.module.scss";
+
+.chordsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+
+  .chordBtn {
+    border: none;
+    background-color: rgb(211, 227, 247);
+    padding: 1rem 1.5rem;
+
+    width: 7rem;
+    border-radius: 1rem;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgb(138, 174, 174);
+    }
+  }
+}
