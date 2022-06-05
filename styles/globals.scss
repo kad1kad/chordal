@@ -10,11 +10,12 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  background-color: $clr-white;
 }
 
 body {
   font-size: 62.5%; //1rem = 10px
+  background-color: $clr-blue-800;
+  min-height: 100vh;
 }
 
 a {
