@@ -14,6 +14,7 @@
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+
   button {
     position: relative;
     border: none;
@@ -25,8 +26,12 @@
     font-size: 1.3rem;
     border-radius: 2%;
 
-    span {
+    span:nth-child(1) {
       display: block;
+    }
+
+    span {
+      display: inline-block;
       font-size: 1rem;
     }
 
@@ -55,6 +60,34 @@
     }
     &:nth-child(8)::before {
       @include nthChordInScale("VII");
+    }
+  }
+  .dropDown {
+    display: flex;
+
+    select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      -ms-appearance: none;
+      margin-right: 1rem;
+
+      background: url("https://www.freeiconspng.com/thumbs/white-arrow-png/white-down-arrow-png-2.png");
+      background-repeat: no-repeat;
+      background-size: 15px 15px;
+      background-position: right;
+      background-origin: content-box;
+
+      border: none;
+      color: $clr-ivory-300;
+      font-size: 1.5rem;
+
+      &:nth-child(1) {
+        width: 3rem;
+      }
+      &:nth-child(2) {
+        width: 9rem;
+      }
     }
   }
 }
