@@ -1,5 +1,5 @@
-import { Mode, Chord } from "@tonaljs/tonal";
-import { useState } from "react";
+import { Mode, Chord, Note } from "@tonaljs/tonal";
+import { useState, useEffect } from "react";
 import styles from "./Modes.module.scss";
 
 function Modes() {
@@ -8,7 +8,6 @@ function Modes() {
     "C#",
     "D",
     "D#",
-    "Eb",
     "E",
     "F",
     "F#",
@@ -20,13 +19,13 @@ function Modes() {
   ];
 
   const modeNames = [
-    "ionian",
-    "dorian",
-    "phrygian",
-    "lydian",
-    "mixolydian",
-    "aeolian",
-    "locrian",
+    "Ionian",
+    "Dorian",
+    "Phrygian",
+    "Lydian",
+    "Mixolydian",
+    "Aeolian",
+    "Locrian",
   ];
 
   function handleNote(e) {
@@ -44,14 +43,10 @@ function Modes() {
 
   const keyChords = Mode.seventhChords(mode, keyNote);
 
-  const chordNotes = Chord.get("Cmaj7");
-
-  console.log(chordNotes);
-
   return (
     //   Key Selector
     <section className={styles.modesContainer}>
-      <div>
+      <div className={styles.dropDown}>
         <select name="startNote" id="startNote" onChange={handleNote}>
           {startNotes.map((startNote, i) => (
             <option key={i} value={startNote}>
@@ -70,11 +65,35 @@ function Modes() {
         </select>
       </div>
 
+      {/* Chord Button */}
       {keyChords.map((chord, i) => (
         <button key={i}>
-          {chord}
+          <span>{chord}</span>
 
-          <span>{Chord.get(chord).notes}</span>
+          {/* remove double sharps */}
+          <span>
+            {Chord.get(chord).notes[0].endsWith("##")
+              ? Note.simplify(Chord.get(chord).notes[0])
+              : Chord.get(chord).notes[0]}
+          </span>
+
+          <span>
+            {Chord.get(chord).notes[1].endsWith("##")
+              ? Note.simplify(Chord.get(chord).notes[1])
+              : Chord.get(chord).notes[1]}
+          </span>
+
+          <span>
+            {Chord.get(chord).notes[2].endsWith("##")
+              ? Note.simplify(Chord.get(chord).notes[2])
+              : Chord.get(chord).notes[2]}
+          </span>
+
+          <span>
+            {Chord.get(chord).notes[3].endsWith("##")
+              ? Note.simplify(Chord.get(chord).notes[3])
+              : Chord.get(chord).notes[3]}
+          </span>
         </button>
       ))}
     </section>
