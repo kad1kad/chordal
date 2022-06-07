@@ -40,6 +40,10 @@
       background-color: $clr-red-300;
     }
 
+    &:active {
+      background-color: $clr-red-600;
+    }
+
     &:nth-child(2)::before {
       @include nthChordInScale("I");
     }
