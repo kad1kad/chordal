@@ -1,8 +1,9 @@
 import { Mode, Chord, Note } from "@tonaljs/tonal";
 import { useState, useEffect } from "react";
 import styles from "./Modes.module.scss";
+import { Song, Track, Instrument, Effect } from "reactronica";
 
-function Modes() {
+function Modes({ isPlaying }) {
   const startNotes = [
     "C",
     "C#",
@@ -43,6 +44,8 @@ function Modes() {
 
   const keyChords = Mode.seventhChords(mode, keyNote);
 
+  const [notes, setNotes] = useState(null);
+
   return (
     //   Key Selector
     <section className={styles.modesContainer}>
@@ -67,10 +70,33 @@ function Modes() {
 
       {/* Chord Button */}
       {keyChords.map((chord, i) => (
-        <button key={i}>
+        <button
+          key={i}
+          onMouseDown={() =>
+            setNotes([
+              {
+                name: [
+                  Chord.get(chord).notes[0].endsWith("##")
+                    ? Note.simplify(Chord.get(chord).notes[0] + "3")
+                    : Chord.get(chord).notes[0] + "3",
+                  Chord.get(chord).notes[1].endsWith("##")
+                    ? Note.simplify(Chord.get(chord).notes[1] + "3")
+                    : Chord.get(chord).notes[1] + "3",
+                  Chord.get(chord).notes[2].endsWith("##")
+                    ? Note.simplify(Chord.get(chord).notes[2] + "3")
+                    : Chord.get(chord).notes[2] + "3",
+                  Chord.get(chord).notes[3].endsWith("##")
+                    ? Note.simplify(Chord.get(chord).notes[3] + "4")
+                    : Chord.get(chord).notes[3] + "4",
+                ],
+              },
+            ])
+          }
+          onMouseUp={() => setNotes(null)}
+        >
           <span>{chord}</span>
 
-          {/* remove double sharps */}
+          {/* Remove double sharps */}
           <span>
             {Chord.get(chord).notes[0].endsWith("##")
               ? Note.simplify(Chord.get(chord).notes[0])
@@ -96,6 +122,14 @@ function Modes() {
           </span>
         </button>
       ))}
+
+      {/* Reactronica Components */}
+      <Song>
+        <Track>
+          <Instrument type="amSynth" notes={notes} onLoad={(buffers) => {}} />
+          <Effect type="feedbackDelay" wet={0.1} />
+        </Track>
+      </Song>
     </section>
   );
 }
