@@ -120,7 +120,28 @@ function Modes() {
               },
             ])
           }
+          onTouchStart={() =>
+            setNotes([
+              {
+                name: [
+                  Chord.get(chord).notes[0].endsWith("##")
+                    ? Note.simplify(Chord.get(chord).notes[0] + "3")
+                    : Chord.get(chord).notes[0] + "3",
+                  Chord.get(chord).notes[1].endsWith("##")
+                    ? Note.simplify(Chord.get(chord).notes[1] + "3")
+                    : Chord.get(chord).notes[1] + "3",
+                  Chord.get(chord).notes[2].endsWith("##")
+                    ? Note.simplify(Chord.get(chord).notes[2] + "3")
+                    : Chord.get(chord).notes[2] + "3",
+                  Chord.get(chord).notes[3].endsWith("##")
+                    ? Note.simplify(Chord.get(chord).notes[3] + "4")
+                    : Chord.get(chord).notes[3] + "4",
+                ],
+              },
+            ])
+          }
           onMouseUp={() => setNotes(null)}
+          onTouchEnd={() => setNotes(null)}
         >
           <span>{chord}</span>
 
@@ -154,8 +175,14 @@ function Modes() {
       {/* Reactronica Components */}
       <Song>
         <Track>
-          <Instrument type={inst} notes={notes} onLoad={(buffers) => {}} />
-          <Effect type="feedbackDelay" wet={0.07} />
+          <Instrument type={inst} notes={notes} />
+          <Effect
+            type="feedbackDelay"
+            wet={0.07}
+            envelope={{
+              attack: 0.1,
+            }}
+          />
         </Track>
       </Song>
     </div>
