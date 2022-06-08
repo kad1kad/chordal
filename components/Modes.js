@@ -176,13 +176,7 @@ function Modes() {
       <Song volume={0.9}>
         <Track>
           <Instrument type={inst} notes={notes} />
-          <Effect
-            type="feedbackDelay"
-            wet={0.07}
-            envelope={{
-              attack: 0.1,
-            }}
-          />
+          <Effect type="feedbackDelay" wet={0.07} />
         </Track>
       </Song>
     </div>
