@@ -78,6 +78,11 @@
       font-size: 1.2rem;
       line-height: 1.8rem;
 
+      -moz-user-select: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+
       &:nth-child(1) {
         font-weight: 800;
       }
