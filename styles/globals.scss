@@ -16,6 +16,10 @@ body {
   font-size: 62.5%; //1rem = 10px
   background-color: white;
   min-height: 100vh;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 a {
