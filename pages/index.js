@@ -1,7 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import ChordProgression from "../components/ChordProgression";
 import Modes from "../components/Modes";
 
 export default function Home() {
@@ -15,7 +14,7 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {/* <ChordProgression /> */}
+
       <Modes />
     </div>
   );
