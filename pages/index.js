@@ -7,10 +7,10 @@ export default function Home() {
   return (
     <div className="">
       <Head>
-        <title>Modulate!</title>
+        <title>Chordal</title>
         <meta
           name="description"
-          content="Modal Interchange for your chord progressions"
+          content="Find chords for all keys and modes!"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
