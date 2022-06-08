@@ -1,9 +1,9 @@
 import { Mode, Chord, Note } from "@tonaljs/tonal";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styles from "./Modes.module.scss";
 import { Song, Track, Instrument, Effect } from "reactronica";
 
-function Modes({ isPlaying }) {
+function Modes() {
   const startNotes = [
     "C",
     "C#",
@@ -29,6 +29,8 @@ function Modes({ isPlaying }) {
     "Locrian",
   ];
 
+  const instrumentSelection = ["amSynth", "fmSynth"];
+
   function handleNote(e) {
     const note = e.target.value;
     setKeyNote(note);
@@ -39,6 +41,11 @@ function Modes({ isPlaying }) {
     setMode(mode);
   }
 
+  function handleInst(e) {
+    const instrument = e.target.value;
+    setInst(instrument);
+  }
+
   const [keyNote, setKeyNote] = useState(startNotes[0]);
   const [mode, setMode] = useState(modeNames[0]);
 
@@ -46,27 +53,48 @@ function Modes({ isPlaying }) {
 
   const [notes, setNotes] = useState(null);
 
-  return (
-    //   Key Selector
-    <section className={styles.modesContainer}>
-      <div className={styles.dropDown}>
-        <select name="startNote" id="startNote" onChange={handleNote}>
-          {startNotes.map((startNote, i) => (
-            <option key={i} value={startNote}>
-              {startNote}
-            </option>
-          ))}
-        </select>
+  const [inst, setInst] = useState("amSynth");
 
-        {/* Mode Selector */}
-        <select name="mode" id="modeSelect" onChange={handleMode}>
-          {modeNames.map((mode, i) => (
-            <option key={i} value={mode}>
-              {mode}
-            </option>
-          ))}
-        </select>
-      </div>
+  return (
+    <div className={styles.modesContainer}>
+      {/* Header */}
+      <header className={styles.container}>
+        <div className={styles.logo}>
+          <h1>Chordal</h1>
+          <h1>&#x2058;</h1>
+        </div>
+
+        <h2>Keys, Modes and Chords with Sound</h2>
+
+        {/* //   Key Selector */}
+        <div className={styles.dropDown}>
+          <select name="startNote" id="startNote" onChange={handleNote}>
+            {startNotes.map((startNote, i) => (
+              <option key={i} value={startNote}>
+                {startNote}
+              </option>
+            ))}
+          </select>
+
+          {/* Mode Selector */}
+          <select name="mode" id="modeSelect" onChange={handleMode}>
+            {modeNames.map((mode, i) => (
+              <option key={i} value={mode}>
+                {mode}
+              </option>
+            ))}
+          </select>
+
+          {/* {Instrument Selector} */}
+          <select name="instrument" id="instrumentSelect" onChange={handleInst}>
+            {instrumentSelection.map((instrumentSelect, i) => (
+              <option key={i} value={instrumentSelect}>
+                {instrumentSelect}
+              </option>
+            ))}
+          </select>
+        </div>
+      </header>
 
       {/* Chord Button */}
       {keyChords.map((chord, i) => (
@@ -126,11 +154,11 @@ function Modes({ isPlaying }) {
       {/* Reactronica Components */}
       <Song>
         <Track>
-          <Instrument type="amSynth" notes={notes} onLoad={(buffers) => {}} />
-          <Effect type="feedbackDelay" wet={0.1} />
+          <Instrument type={inst} notes={notes} onLoad={(buffers) => {}} />
+          <Effect type="feedbackDelay" wet={0.07} />
         </Track>
       </Song>
-    </section>
+    </div>
   );
 }
 
