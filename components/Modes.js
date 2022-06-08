@@ -173,7 +173,7 @@ function Modes() {
       ))}
 
       {/* Reactronica Components */}
-      <Song>
+      <Song volume={0.9}>
         <Track>
           <Instrument type={inst} notes={notes} />
           <Effect
