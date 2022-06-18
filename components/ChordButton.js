@@ -73,29 +73,12 @@ function ChordButton({
           <span>{chord}</span>
 
           {/* Remove double sharps */}
-          <span>
-            {Chord.get(chord).notes[0].endsWith("##")
-              ? Note.simplify(Chord.get(chord).notes[0])
-              : Chord.get(chord).notes[0]}
-          </span>
 
-          <span>
-            {Chord.get(chord).notes[1].endsWith("##")
-              ? Note.simplify(Chord.get(chord).notes[1])
-              : Chord.get(chord).notes[1]}
-          </span>
-
-          <span>
-            {Chord.get(chord).notes[2].endsWith("##")
-              ? Note.simplify(Chord.get(chord).notes[2])
-              : Chord.get(chord).notes[2]}
-          </span>
-
-          <span>
-            {Chord.get(chord).notes[3].endsWith("##")
-              ? Note.simplify(Chord.get(chord).notes[3])
-              : Chord.get(chord).notes[3]}
-          </span>
+          {Chord.get(chord).notes.map((note, i) => (
+            <span key={i}>
+              {note.endsWith("##") ? Note.simplify(note) : note}
+            </span>
+          ))}
         </button>
       ))}
     </div>
