@@ -1,126 +1,26 @@
 @import "../styles/global-variables.module.scss";
 
-@mixin nthChordInScale($nthChord) {
-  content: $nthChord;
-  position: absolute;
-  font-size: 1.2rem;
-  top: 2px;
-  left: 4px;
-  color: $clr-red-600;
-}
+.container {
+  background-color: $clr-black;
+  padding: 0.7rem 2rem;
+  color: $clr-ivory-300;
+  width: 100vw;
 
-.modesContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.8rem;
-  padding-bottom: 1rem;
+  .logo {
+    display: flex;
+    align-items: center;
 
-  .container {
-    background-color: $clr-black;
-    padding: 0.7rem 2rem;
-    color: $clr-ivory-300;
-    width: 100vw;
-
-    .logo {
-      display: flex;
-      align-items: center;
-
-      h1 {
-        letter-spacing: 4px;
-        margin-right: 0.3rem;
-      }
-    }
-
-    h2 {
-      font-weight: 200;
-      letter-spacing: 1px;
+    h1 {
+      letter-spacing: 4px;
+      margin-right: 0.3rem;
     }
   }
 
-  button {
-    position: relative;
-    border: none;
-    background-color: $clr-ivory-100;
-    width: 15rem;
-    height: 5.5rem;
-    cursor: pointer;
-    transition: all 0.2s ease-out;
-
-    border-radius: 2%;
+  h2 {
+    font-weight: 200;
     letter-spacing: 1px;
-
-    &:nth-of-type(2) {
-      background-color: $clr-ivory-200;
-    }
-    &:nth-of-type(3) {
-      background-color: $clr-ivory-300;
-    }
-    &:nth-of-type(4) {
-      background-color: $clr-ivory-400;
-    }
-    &:nth-of-type(5) {
-      background-color: $clr-ivory-500;
-    }
-    &:nth-of-type(6) {
-      background-color: $clr-ivory-600;
-    }
-    &:nth-of-type(7) {
-      background-color: $clr-ivory-700;
-    }
-
-    span:nth-child(1) {
-      display: block;
-    }
-
-    span {
-      display: inline-block;
-      font-size: 1.2rem;
-      line-height: 1.8rem;
-      color: $clr-black;
-
-      -moz-user-select: none;
-      -webkit-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-
-      &:nth-child(1) {
-        font-weight: 800;
-      }
-    }
-
-    &:hover {
-      transform: scale(1.04);
-      background-color: $clr-red-300;
-    }
-
-    &:active {
-      background-color: $clr-red-600;
-      transform: scale(0.97);
-    }
-
-    &:nth-child(2)::before {
-      @include nthChordInScale("I");
-    }
-    &:nth-child(3)::before {
-      @include nthChordInScale("II");
-    }
-    &:nth-child(4)::before {
-      @include nthChordInScale("III");
-    }
-    &:nth-child(5)::before {
-      @include nthChordInScale("IV");
-    }
-    &:nth-child(6)::before {
-      @include nthChordInScale("V");
-    }
-    &:nth-child(7)::before {
-      @include nthChordInScale("VI");
-    }
-    &:nth-child(8)::before {
-      @include nthChordInScale("VII");
-    }
   }
+
   .dropDown {
     display: flex;
 
