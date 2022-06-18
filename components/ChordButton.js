@@ -1,4 +1,4 @@
-import { Mode, Chord, Note, ChordDetect } from "@tonaljs/tonal";
+import { Mode, Chord, Note } from "@tonaljs/tonal";
 import styles from "./ChordButton.module.scss";
 
 function ChordButton({ setNotes, keyNote, setKeyNote, mode, setMode }) {
