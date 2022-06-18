@@ -95,7 +95,6 @@ function Modes() {
         </div>
       </header>
 
-      {/* Chord Button */}
       <ChordButton
         startNotes={startNotes}
         modeNames={modeNames}
