@@ -2,6 +2,7 @@ import { Mode, Chord, Note } from "@tonaljs/tonal";
 import { useState } from "react";
 import styles from "./Modes.module.scss";
 import { Song, Track, Instrument, Effect } from "reactronica";
+import ChordButton from "./ChordButton";
 
 function Modes() {
   const startNotes = [
@@ -31,6 +32,11 @@ function Modes() {
 
   const instrumentSelection = ["amSynth", "fmSynth"];
 
+  function handleInst(e) {
+    const instrument = e.target.value;
+    setInst(instrument);
+  }
+
   function handleNote(e) {
     const note = e.target.value;
     setKeyNote(note);
@@ -41,15 +47,8 @@ function Modes() {
     setMode(mode);
   }
 
-  function handleInst(e) {
-    const instrument = e.target.value;
-    setInst(instrument);
-  }
-
   const [keyNote, setKeyNote] = useState(startNotes[0]);
   const [mode, setMode] = useState(modeNames[0]);
-
-  const keyChords = Mode.seventhChords(mode, keyNote);
 
   const [notes, setNotes] = useState(null);
 
@@ -97,80 +96,16 @@ function Modes() {
       </header>
 
       {/* Chord Button */}
-      {keyChords.map((chord, i) => (
-        <button
-          key={i}
-          onMouseDown={() =>
-            setNotes([
-              {
-                name: [
-                  Chord.get(chord).notes[0].endsWith("##")
-                    ? Note.simplify(Chord.get(chord).notes[0] + "3")
-                    : Chord.get(chord).notes[0] + "3",
-                  Chord.get(chord).notes[1].endsWith("##")
-                    ? Note.simplify(Chord.get(chord).notes[1] + "3")
-                    : Chord.get(chord).notes[1] + "3",
-                  Chord.get(chord).notes[2].endsWith("##")
-                    ? Note.simplify(Chord.get(chord).notes[2] + "3")
-                    : Chord.get(chord).notes[2] + "3",
-                  Chord.get(chord).notes[3].endsWith("##")
-                    ? Note.simplify(Chord.get(chord).notes[3] + "4")
-                    : Chord.get(chord).notes[3] + "4",
-                ],
-              },
-            ])
-          }
-          onTouchStart={() =>
-            setNotes([
-              {
-                name: [
-                  Chord.get(chord).notes[0].endsWith("##")
-                    ? Note.simplify(Chord.get(chord).notes[0] + "3")
-                    : Chord.get(chord).notes[0] + "3",
-                  Chord.get(chord).notes[1].endsWith("##")
-                    ? Note.simplify(Chord.get(chord).notes[1] + "3")
-                    : Chord.get(chord).notes[1] + "3",
-                  Chord.get(chord).notes[2].endsWith("##")
-                    ? Note.simplify(Chord.get(chord).notes[2] + "3")
-                    : Chord.get(chord).notes[2] + "3",
-                  Chord.get(chord).notes[3].endsWith("##")
-                    ? Note.simplify(Chord.get(chord).notes[3] + "4")
-                    : Chord.get(chord).notes[3] + "4",
-                ],
-              },
-            ])
-          }
-          onMouseUp={() => setNotes(null)}
-          onTouchEnd={() => setNotes(null)}
-        >
-          <span>{chord}</span>
-
-          {/* Remove double sharps */}
-          <span>
-            {Chord.get(chord).notes[0].endsWith("##")
-              ? Note.simplify(Chord.get(chord).notes[0])
-              : Chord.get(chord).notes[0]}
-          </span>
-
-          <span>
-            {Chord.get(chord).notes[1].endsWith("##")
-              ? Note.simplify(Chord.get(chord).notes[1])
-              : Chord.get(chord).notes[1]}
-          </span>
-
-          <span>
-            {Chord.get(chord).notes[2].endsWith("##")
-              ? Note.simplify(Chord.get(chord).notes[2])
-              : Chord.get(chord).notes[2]}
-          </span>
-
-          <span>
-            {Chord.get(chord).notes[3].endsWith("##")
-              ? Note.simplify(Chord.get(chord).notes[3])
-              : Chord.get(chord).notes[3]}
-          </span>
-        </button>
-      ))}
+      <ChordButton
+        startNotes={startNotes}
+        modeNames={modeNames}
+        notes={notes}
+        setNotes={setNotes}
+        keyNote={keyNote}
+        setKeyNote={setKeyNote}
+        mode={mode}
+        setMode={setMode}
+      />
 
       {/* Reactronica Components */}
       <Song volume={0.9}>
