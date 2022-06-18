@@ -1,4 +1,4 @@
-import styles from "./Modes.module.scss";
+import styles from "./Chords.module.scss";
 import startNotes from "../data/startNotes";
 import modeNames from "../data/modeNames";
 
