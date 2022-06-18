@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "./Modes.module.scss";
+import styles from "./Chords.module.scss";
 import { Song, Track, Instrument, Effect } from "reactronica";
 import ChordButton from "./ChordButton";
 
