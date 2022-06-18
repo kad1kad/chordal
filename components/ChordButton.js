@@ -1,7 +1,17 @@
-import { Mode, Chord, Note } from "@tonaljs/tonal";
+import { Mode, Chord, Note, ChordDetect } from "@tonaljs/tonal";
 import styles from "./ChordButton.module.scss";
 
-function ChordButton({ setNotes, keyNote, mode }) {
+function ChordButton({ setNotes, keyNote, setKeyNote, mode, setMode }) {
+  function handleNote(e) {
+    const note = e.target.value;
+    setKeyNote(note);
+  }
+
+  function handleMode(e) {
+    const mode = e.target.value;
+    setMode(mode);
+  }
+
   const keyChords = Mode.seventhChords(mode, keyNote);
   return (
     <div className={styles.btnWrapper}>

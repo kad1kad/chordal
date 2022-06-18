@@ -28,13 +28,7 @@ export default function Home() {
         setInst={setInst}
       />
 
-      <Chords
-        keyNote={keyNote}
-        setKeyNote={setKeyNote}
-        mode={mode}
-        setMode={setMode}
-        inst={inst}
-      />
+      <Chords keyNote={keyNote} mode={mode} inst={inst} />
     </div>
   );
 }
