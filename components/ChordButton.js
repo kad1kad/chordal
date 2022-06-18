@@ -1,26 +1,7 @@
 import { Mode, Chord, Note } from "@tonaljs/tonal";
 import styles from "./ChordButton.module.scss";
 
-function ChordButton({
-  startNotes,
-  modeNames,
-  setNotes,
-  notes,
-  keyNote,
-  setKeyNote,
-  mode,
-  setMode,
-}) {
-  function handleNote(e) {
-    const note = e.target.value;
-    setKeyNote(note);
-  }
-
-  function handleMode(e) {
-    const mode = e.target.value;
-    setMode(mode);
-  }
-
+function ChordButton({ setNotes, keyNote, mode }) {
   const keyChords = Mode.seventhChords(mode, keyNote);
   return (
     <div className={styles.btnWrapper}>
@@ -72,7 +53,7 @@ function ChordButton({
         >
           <span>{chord}</span>
 
-          {/* Remove double sharps */}
+          {/* Remove double sharps in single notes */}
 
           {Chord.get(chord).notes.map((note, i) => (
             <span key={i}>
