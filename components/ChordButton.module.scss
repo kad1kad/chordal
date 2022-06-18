@@ -77,25 +77,25 @@
       transform: scale(0.97);
     }
 
-    &:nth-child(2)::before {
+    &:nth-child(1)::before {
       @include nthChordInScale("I");
     }
-    &:nth-child(3)::before {
+    &:nth-child(2)::before {
       @include nthChordInScale("II");
     }
-    &:nth-child(4)::before {
+    &:nth-child(3)::before {
       @include nthChordInScale("III");
     }
-    &:nth-child(5)::before {
+    &:nth-child(4)::before {
       @include nthChordInScale("IV");
     }
-    &:nth-child(6)::before {
+    &:nth-child(5)::before {
       @include nthChordInScale("V");
     }
-    &:nth-child(7)::before {
+    &:nth-child(6)::before {
       @include nthChordInScale("VI");
     }
-    &:nth-child(8)::before {
+    &:nth-child(7)::before {
       @include nthChordInScale("VII");
     }
   }
