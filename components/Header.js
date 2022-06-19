@@ -1,4 +1,4 @@
-import styles from "./Chords.module.scss";
+import styles from "./Header.module.scss";
 import startNotes from "../data/startNotes";
 import modeNames from "../data/modeNames";
 
@@ -19,6 +19,7 @@ function Header({ setKeyNote, setMode, setInst }) {
     const mode = e.target.value;
     setMode(mode);
   }
+
   return (
     <header className={styles.container}>
       <div className={styles.logo}>
@@ -28,7 +29,7 @@ function Header({ setKeyNote, setMode, setInst }) {
 
       <h2>Keys, Modes and Chords with Sound</h2>
 
-      {/* //   Key Selector */}
+      {/* //   Tonic Selector */}
       <div className={styles.dropDown}>
         <select name="startNote" id="startNote" onChange={handleNote}>
           {startNotes.map((startNote, i) => (
