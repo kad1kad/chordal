@@ -1,6 +1,6 @@
-import { Mode, Chord, Note } from "@tonaljs/tonal";
+import { Mode } from "@tonaljs/tonal";
 import styles from "./ChordButtonList.module.scss";
-import ChordButton from './ChordButton';
+import ChordButton from "./ChordButton";
 
 function ChordButtonList({ setNotes, keyNote, mode }) {
   const keyChords = Mode.seventhChords(mode, keyNote);
@@ -8,7 +8,11 @@ function ChordButtonList({ setNotes, keyNote, mode }) {
   return (
     <div className={styles.btnWrapper}>
       {keyChords.map((chord, index) => (
-        <ChordButton key={`${chord}-${index}`} chord={chord} setNotes={setNotes} />
+        <ChordButton
+          key={`${chord}-${index}`}
+          chord={chord}
+          setNotes={setNotes}
+        />
       ))}
     </div>
   );
