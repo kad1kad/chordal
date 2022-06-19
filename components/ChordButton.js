@@ -1,23 +1,14 @@
 import { Mode, Chord, Note } from "@tonaljs/tonal";
 import styles from "./ChordButton.module.scss";
 
-function ChordButton({ setNotes, keyNote, setKeyNote, mode, setMode }) {
-  function handleNote(e) {
-    const note = e.target.value;
-    setKeyNote(note);
-  }
-
-  function handleMode(e) {
-    const mode = e.target.value;
-    setMode(mode);
-  }
-
+function ChordButton({ setNotes, keyNote, mode }) {
   const keyChords = Mode.seventhChords(mode, keyNote);
+
   return (
     <div className={styles.btnWrapper}>
-      {keyChords.map((chord, i) => (
+      {keyChords.map((chord, index) => (
         <button
-          key={i}
+          key={`${chord}-${index}`}
           onMouseDown={() =>
             setNotes([
               {
@@ -65,8 +56,8 @@ function ChordButton({ setNotes, keyNote, setKeyNote, mode, setMode }) {
 
           {/* Remove double sharps in single notes */}
 
-          {Chord.get(chord).notes.map((note, i) => (
-            <span key={i}>
+          {Chord.get(chord).notes.map((note, index) => (
+            <span key={`${note}-${index}`}>
               {note.endsWith("##") ? Note.simplify(note) : note}
             </span>
           ))}
