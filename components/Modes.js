@@ -2,7 +2,7 @@ import { Mode, Chord, Note } from "@tonaljs/tonal";
 import { useState } from "react";
 import styles from "./Modes.module.scss";
 import { Song, Track, Instrument, Effect } from "reactronica";
-import ChordButton from "./ChordButton";
+import ChordButtonList from "./ChordButtonList";
 
 function Modes() {
   const startNotes = [
@@ -95,7 +95,7 @@ function Modes() {
         </div>
       </header>
 
-      <ChordButton
+      <ChordButtonList
         startNotes={startNotes}
         modeNames={modeNames}
         notes={notes}
