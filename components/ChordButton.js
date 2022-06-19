@@ -1,70 +1,43 @@
-import { Mode, Chord, Note } from "@tonaljs/tonal";
-import styles from "./ChordButton.module.scss";
+import React, {useMemo} from 'react';
+import {Chord, Note} from "@tonaljs/tonal";
 
-function ChordButton({ setNotes, keyNote, mode }) {
-  const keyChords = Mode.seventhChords(mode, keyNote);
+export const ChordButton = ({setNotes, chord}) => {
+  const chordNames = useMemo(() => Chord.get(chord).notes.map((note, index) => {
+    const addValue = index < 3 ? "3" : "4";
+
+    return note.endsWith("##") ? Note.simplify(note + addValue) : note + addValue;
+  }), [chord]);
+
+  const handleMouseDown = () => {
+      setNotes([
+        {
+          name: chordNames
+        },
+      ])
+  }
+
+  const handleMouseUp = () => {
+    setNotes(null);
+  }
 
   return (
-    <div className={styles.btnWrapper}>
-      {keyChords.map((chord, index) => (
-        <button
-          key={`${chord}-${index}`}
-          onMouseDown={() =>
-            setNotes([
-              {
-                name: [
-                  Chord.get(chord).notes[0].endsWith("##")
-                    ? Note.simplify(Chord.get(chord).notes[0] + "3")
-                    : Chord.get(chord).notes[0] + "3",
-                  Chord.get(chord).notes[1].endsWith("##")
-                    ? Note.simplify(Chord.get(chord).notes[1] + "3")
-                    : Chord.get(chord).notes[1] + "3",
-                  Chord.get(chord).notes[2].endsWith("##")
-                    ? Note.simplify(Chord.get(chord).notes[2] + "3")
-                    : Chord.get(chord).notes[2] + "3",
-                  Chord.get(chord).notes[3].endsWith("##")
-                    ? Note.simplify(Chord.get(chord).notes[3] + "4")
-                    : Chord.get(chord).notes[3] + "4",
-                ],
-              },
-            ])
-          }
-          onTouchStart={() =>
-            setNotes([
-              {
-                name: [
-                  Chord.get(chord).notes[0].endsWith("##")
-                    ? Note.simplify(Chord.get(chord).notes[0] + "3")
-                    : Chord.get(chord).notes[0] + "3",
-                  Chord.get(chord).notes[1].endsWith("##")
-                    ? Note.simplify(Chord.get(chord).notes[1] + "3")
-                    : Chord.get(chord).notes[1] + "3",
-                  Chord.get(chord).notes[2].endsWith("##")
-                    ? Note.simplify(Chord.get(chord).notes[2] + "3")
-                    : Chord.get(chord).notes[2] + "3",
-                  Chord.get(chord).notes[3].endsWith("##")
-                    ? Note.simplify(Chord.get(chord).notes[3] + "4")
-                    : Chord.get(chord).notes[3] + "4",
-                ],
-              },
-            ])
-          }
-          onMouseUp={() => setNotes(null)}
-          onTouchEnd={() => setNotes(null)}
-        >
-          <span>{chord}</span>
+    <button
+      onMouseDown={handleMouseDown}
+      onTouchStart={handleMouseDown}
+      onMouseUp={handleMouseUp}
+      onTouchEnd={handleMouseUp}
+    >
+      <span>{chord}</span>
 
-          {/* Remove double sharps in single notes */}
+      {/* Remove double sharps in single notes */}
 
-          {Chord.get(chord).notes.map((note, index) => (
-            <span key={`${note}-${index}`}>
-              {note.endsWith("##") ? Note.simplify(note) : note}
-            </span>
-          ))}
-        </button>
+      {Chord.get(chord).notes.map((note, index) => (
+        <span key={`${note}-${index}`}>
+          {note.endsWith("##") ? Note.simplify(note) : note}
+        </span>
       ))}
-    </div>
-  );
+    </button>
+  )
 }
 
 export default ChordButton;

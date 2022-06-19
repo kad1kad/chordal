@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { Song, Track, Instrument, Effect } from "reactronica";
-import ChordButton from "./ChordButton";
+import ChordButtonList from "./ChordButtonList";
 
 function Chords({ keyNote, mode, inst }) {
   const [notes, setNotes] = useState(null);
 
   return (
     <main>
-      <ChordButton setNotes={setNotes} keyNote={keyNote} mode={mode} />
+      <ChordButtonList setNotes={setNotes} keyNote={keyNote} mode={mode} />
 
       {/* Reactronica Components */}
       <Song volume={0.9}>
