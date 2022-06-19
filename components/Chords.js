@@ -1,5 +1,4 @@
 import { useState } from "react";
-import styles from "./Chords.module.scss";
 import { Song, Track, Instrument, Effect } from "reactronica";
 import ChordButton from "./ChordButton";
 
@@ -7,7 +6,7 @@ function Chords({ keyNote, setKeyNote, mode, setMode, inst }) {
   const [notes, setNotes] = useState(null);
 
   return (
-    <div className={styles.modesContainer}>
+    <main>
       <ChordButton setNotes={setNotes} keyNote={keyNote} mode={mode} />
 
       {/* Reactronica Components */}
@@ -17,7 +16,7 @@ function Chords({ keyNote, setKeyNote, mode, setMode, inst }) {
           <Effect type="feedbackDelay" wet={0.07} />
         </Track>
       </Song>
-    </div>
+    </main>
   );
 }
 
