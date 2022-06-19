@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Song, Track, Instrument, Effect } from "reactronica";
 import ChordButton from "./ChordButton";
 
-function Chords({ keyNote, setKeyNote, mode, setMode, inst }) {
+function Chords({ keyNote, mode, inst }) {
   const [notes, setNotes] = useState(null);
 
   return (
