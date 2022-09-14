@@ -1,10 +1,10 @@
 import styles from "./Header.module.scss";
-import startNotes from "../data/startNotes";
-import modeNames from "../data/modeNames";
+
+import TonicSelector from "./TonicSelector";
+import ModeSelector from "./ModeSelector";
+import InstrumentSelector from "./InstrumentSelector";
 
 function Header({ setKeyNote, setMode, setInst }) {
-  const instrumentSelection = ["amSynth", "fmSynth"];
-
   function handleInst(e) {
     const instrument = e.target.value;
     setInst(instrument);
@@ -29,33 +29,12 @@ function Header({ setKeyNote, setMode, setInst }) {
 
       <h2>Keys, Modes and Chords with Sound</h2>
 
-      {/* //   Tonic Selector */}
       <div className={styles.dropDown}>
-        <select name="startNote" id="startNote" onChange={handleNote}>
-          {startNotes.map((startNote, i) => (
-            <option key={i} value={startNote}>
-              {startNote}
-            </option>
-          ))}
-        </select>
+        <TonicSelector handleNote={handleNote} />
 
-        {/* Mode Selector */}
-        <select name="mode" id="modeSelect" onChange={handleMode}>
-          {modeNames.map((mode, i) => (
-            <option key={i} value={mode}>
-              {mode}
-            </option>
-          ))}
-        </select>
+        <ModeSelector handleMode={handleMode} />
 
-        {/* {Instrument Selector} */}
-        <select name="instrument" id="instrumentSelect" onChange={handleInst}>
-          {instrumentSelection.map((instrumentSelect, i) => (
-            <option key={i} value={instrumentSelect}>
-              {instrumentSelect}
-            </option>
-          ))}
-        </select>
+        <InstrumentSelector handleInst={handleInst} />
       </div>
     </header>
   );
