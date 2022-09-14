@@ -6,11 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest --watch"
   },
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
+    "@testing-library/user-event": "^14.4.3",
     "@tonaljs/chord-detect": "^4.6.5",
     "@tonaljs/tonal": "^4.6.5",
     "next": "12.1.6",
@@ -23,7 +25,11 @@
     "tone": "^14.7.77"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
     "eslint": "8.17.0",
-    "eslint-config-next": "12.1.6"
+    "eslint-config-next": "12.1.6",
+    "jest": "^29.0.2",
+    "jest-environment-jsdom": "^29.0.2"
   }
 }
