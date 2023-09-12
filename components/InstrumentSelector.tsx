@@ -1,4 +1,8 @@
-function InstrumentSelector({ handleInst }) {
+type InstrumentSelectorProps = {
+  handleInst(e: React.ChangeEvent<HTMLSelectElement>): void;
+};
+
+function InstrumentSelector({ handleInst }: InstrumentSelectorProps) {
   const instrumentSelection = ["amSynth", "fmSynth"];
 
   return (

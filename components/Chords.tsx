@@ -1,9 +1,22 @@
 import { useState } from "react";
-import { Song, Track, Instrument, Effect } from "reactronica";
+import { Song, Track, Instrument, Effect, InstrumentType } from "reactronica";
 import ChordButtonList from "./ChordButtonList";
 
-function Chords({ keyNote, mode, inst }) {
-  const [notes, setNotes] = useState(null);
+type NoteType = {
+  name: string;
+  velocity?: number;
+  duration?: number | string;
+  key?: string | number;
+};
+
+type ChordsProps = {
+  keyNote: string;
+  mode: string;
+  inst: InstrumentType;
+};
+
+function Chords({ keyNote, mode, inst }: ChordsProps) {
+  const [notes, setNotes] = useState<NoteType[] | undefined>(undefined);
 
   return (
     <main>

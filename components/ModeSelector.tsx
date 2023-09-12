@@ -1,6 +1,10 @@
 import modeNames from "../data/modeNames";
 
-function ModeSelector({ handleMode }) {
+type ModeSelectorProps = {
+  handleMode(e: React.ChangeEvent<HTMLSelectElement>): void;
+};
+
+function ModeSelector({ handleMode }: ModeSelectorProps) {
   return (
     <select name="mode" id="modeSelect" onChange={handleMode}>
       {modeNames.map((mode, i) => (

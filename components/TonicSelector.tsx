@@ -1,6 +1,10 @@
 import startNotes from "../data/startNotes";
 
-function TonicSelector({ handleNote }) {
+type TonicSelectorProps = {
+  handleNote: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+};
+
+function TonicSelector({ handleNote }: TonicSelectorProps) {
   return (
     <select name="startNote" id="startNote" onChange={handleNote}>
       {startNotes.map((startNote, i) => (

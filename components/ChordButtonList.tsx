@@ -1,8 +1,22 @@
 import { Mode } from "@tonaljs/tonal";
 import styles from "./ChordButtonList.module.scss";
 import ChordButton from "./ChordButton";
+import { Dispatch, SetStateAction } from "react";
 
-function ChordButtonList({ setNotes, keyNote, mode }) {
+type NoteType = {
+  name: string;
+  velocity?: number;
+  duration?: number | string;
+  key?: string | number;
+};
+
+type ChordButtonListProps = {
+  setNotes: Dispatch<SetStateAction<NoteType[] | undefined>>;
+  keyNote: string;
+  mode: string;
+};
+
+function ChordButtonList({ setNotes, keyNote, mode }: ChordButtonListProps) {
   const keyChords = Mode.seventhChords(mode, keyNote);
 
   return (

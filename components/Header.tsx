@@ -3,19 +3,27 @@ import styles from "./Header.module.scss";
 import TonicSelector from "./TonicSelector";
 import ModeSelector from "./ModeSelector";
 import InstrumentSelector from "./InstrumentSelector";
+import { Dispatch, SetStateAction } from "react";
+import { InstrumentType } from "reactronica";
 
-function Header({ setKeyNote, setMode, setInst }) {
-  function handleInst(e) {
-    const instrument = e.target.value;
+type HeaderProps = {
+  setKeyNote: Dispatch<SetStateAction<string>>;
+  setMode: Dispatch<SetStateAction<string>>;
+  setInst: Dispatch<SetStateAction<InstrumentType>>;
+};
+
+function Header({ setKeyNote, setMode, setInst }: HeaderProps) {
+  function handleInst(e: React.ChangeEvent<HTMLSelectElement>) {
+    const instrument = e.target.value as InstrumentType;
     setInst(instrument);
   }
 
-  function handleNote(e) {
+  function handleNote(e: React.ChangeEvent<HTMLSelectElement>) {
     const note = e.target.value;
     setKeyNote(note);
   }
 
-  function handleMode(e) {
+  function handleMode(e: React.ChangeEvent<HTMLSelectElement>) {
     const mode = e.target.value;
     setMode(mode);
   }

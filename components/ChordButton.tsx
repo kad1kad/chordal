@@ -1,7 +1,19 @@
-import { useMemo } from "react";
+import { Dispatch, SetStateAction, useMemo } from "react";
 import { Chord, Note } from "@tonaljs/tonal";
 
-export const ChordButton = ({ setNotes, chord }) => {
+type NoteType = {
+  name: string;
+  velocity?: number;
+  duration?: number | string;
+  key?: string | number;
+};
+
+type ChordButtonProps = {
+  setNotes: Dispatch<SetStateAction<NoteType[] | undefined>>;
+  chord: string;
+};
+
+export const ChordButton = ({ setNotes, chord }: ChordButtonProps) => {
   const chordNotes = useMemo(
     () =>
       Chord.get(chord).notes.map((note, index) => {
@@ -15,15 +27,12 @@ export const ChordButton = ({ setNotes, chord }) => {
   );
 
   const handleMouseDown = () => {
-    setNotes([
-      {
-        name: chordNotes,
-      },
-    ]);
+    const chordNoteObjects = chordNotes.map((note) => ({ name: note }));
+    setNotes(chordNoteObjects);
   };
 
   const handleMouseUp = () => {
-    setNotes(null);
+    setNotes(undefined);
   };
 
   return (
